@@ -1,0 +1,35 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Server Habit Tracker",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Muraii-pl/HabitTracker.git"
+  },
+  "keywords": [
+    "Habit",
+    "Tracker",
+    "server",
+    "nodejs",
+    "express"
+  ],
+  "author": "Mateusz Głowania & Kamila Jałowy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Muraii-pl/HabitTracker/issues"
+  },
+  "homepage": "https://github.com/Muraii-pl/HabitTracker#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mysql2": "^2.3.2",
+    "nodemon": "^2.0.14",
+    "sequelize": "^6.8.0",
+    "sequelize-cli": "^6.2.0"
+  }
+}
