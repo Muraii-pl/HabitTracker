@@ -28,8 +28,9 @@ router.post('/register', async (req, res) => {
             password: hash,
             name: name,
             email: email
+        }).then(()=>{
+            res.status(201).json("Succes")
         })
-        res.code(201).json("Succes")
     })
 })
 
@@ -72,7 +73,8 @@ router.post('/uploadAvatar',validateToken, async (req, res) => {
     if(req.files){
         const file = req.files.avatar
         const fileName = `avatar${file.name.slice(file.name.lastIndexOf('.'))}`
-        file.mv(`./public/Users/${req.user.username}/${fileName}`, err=>{
+        const directory = `./public/Users/${req.user.username}/${fileName}`
+        file.mv(directory, err=>{
             if(err) {
                 res.json({error:err})
             } else {

@@ -17,7 +17,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-        photourl: DataTypes.STRING
     });
 
     Users.associate = (models) => {
