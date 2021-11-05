@@ -10,6 +10,18 @@ const Token = process.env.VALIDTOKEN
 
 router.post('/register', async (req, res) => {
     const {username, password, name, email} = req.body
+
+    const user = await Users.findOne({
+        where:{
+            username: username
+        }
+    })
+    if(user){
+        return res.status(403).json({
+            message: "User Exist",
+            error: "User Exist"
+        })
+    }
     bcrypt.hash(password, 10).then(async (hash) => {
         await Users.create({
             username: username,
@@ -20,9 +32,9 @@ router.post('/register', async (req, res) => {
         res.code(201).json("Succes")
     })
 })
+
 router.post('/login', async (req, res) => {
     const {username, password} = req.body
-    console.log(req.body)
     const user = await Users.findOne({
         where: {
             username: username
@@ -46,7 +58,7 @@ router.post('/login', async (req, res) => {
         const accesToken = sign({
             username: user.username,
             name: user.name
-        },Token)
+        }, Token)
         res.status(200).json({
             token: accesToken,
             username: user.username,
@@ -54,6 +66,23 @@ router.post('/login', async (req, res) => {
         })
     })
 
+})
+
+router.post('/uploadAvatar',validateToken, async (req, res) => {
+    if(req.files){
+        const file = req.files.avatar
+        const fileName = `avatar${file.name.slice(file.name.lastIndexOf('.'))}`
+        file.mv(`./public/Users/${req.user.username}/${fileName}`, err=>{
+            if(err) {
+                res.json({error:err})
+            } else {
+                res.status(200).json({
+                    message:"File Uploaded successfully",
+                    error:false
+                })
+            }
+        })
+    }
 })
 
 module.exports = router
