@@ -15,12 +15,46 @@
     border: none;
 }
 
+.mainButtonPink {
+    height: 60px;
+    width: 250px;
+    -webkit-appearance: none;
+    color: #FFFFFF;
+    background-color: #FF9D9D;
+    -moz-appearance: none;
+    border-radius: 15px;
+    font-size: 18px;
+    font-family: 'AlegreyaSansSC', serif;
+    border: none;
+}
+
+.mt-5 {
+    margin-top: 30px;
+}
+
+.mb-5 {
+    margin-bottom: 30px;
+}
+
 @media (min-width: 1200px) {
     .mainButton {
         height: 60px;
         width: 350px;
         -webkit-appearance: none;
         background-color: #FFFFFF;
+        -moz-appearance: none;
+        border-radius: 15px;
+        font-size: 18px;
+        font-family: 'AlegreyaSansSC', serif;
+        border: none;
+    }
+
+    .mainButtonPink {
+        height: 60px;
+        width: 350px;
+        -webkit-appearance: none;
+        color: #FFFFFF;
+        background-color: #FF9D9D;
         -moz-appearance: none;
         border-radius: 15px;
         font-size: 18px;
