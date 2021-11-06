@@ -5,7 +5,7 @@
 
 .mainButton {
     height: 60px;
-    width: 350px;
+    width: 250px;
     -webkit-appearance: none;
     background-color: #FFFFFF;
     -moz-appearance: none;
@@ -13,6 +13,20 @@
     font-size: 18px;
     font-family: 'AlegreyaSansSC', serif;
     border: none;
+}
+
+@media (min-width: 1200px) {
+    .mainButton {
+        height: 60px;
+        width: 350px;
+        -webkit-appearance: none;
+        background-color: #FFFFFF;
+        -moz-appearance: none;
+        border-radius: 15px;
+        font-size: 18px;
+        font-family: 'AlegreyaSansSC', serif;
+        border: none;
+    }
 }
 
 .noneButton {
