@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './assets/fonts/FrederickatheGreat-Regular.ttf';
+import './assets/fonts/AlegreyaSansSC-Regular.ttf';
+import './assets/fonts/AlegreyaSansSC-Bold.ttf';
 
 ReactDOM.render(
   <React.StrictMode>
