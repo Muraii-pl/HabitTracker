@@ -11,16 +11,28 @@ const Token = process.env.VALIDTOKEN
 router.post('/register', async (req, res) => {
     const {username, password, name, email} = req.body
 
-    const user = await Users.findOne({
+    const user_username = await Users.findOne({
         where:{
             username: username
         }
     })
-    if(user){
-        return res.status(403).json({
+    if(user_username){
+        return res.json({
             message: "User Exist",
             error: "User Exist"
         })
+    } else {
+        const user_email = await Users.findOne({
+            where:{
+                email:email
+            }
+        })
+        if(user_email){
+            return res.json({
+                message: "Email Busy",
+                error: "Email Busy"
+            })
+        }
     }
     bcrypt.hash(password, 10).then(async (hash) => {
         await Users.create({

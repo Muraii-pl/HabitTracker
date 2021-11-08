@@ -1,19 +1,81 @@
-import React from 'react';
+import React,{useState} from 'react';
 import MainTemplate from "../../templates/MainTemplate";
 import './register.css'
+import { useNavigate } from "react-router-dom";
+import {Helmet} from 'react-helmet'
+
+import axios from 'axios'
+import {Formik, Form,Field,ErrorMessage} from 'formik'
+import * as Yup from "yup"
 
 const Register = () => {
+    const navigate = useNavigate()
+    const initaleValues = {
+        username:"",
+        password:"",
+        name:"",
+        email:""
+    }
+
+    const [username,setUsername] = useState(false)
+    const [email,setEmail] = useState(false)
+
+    const validationSchema = Yup.object().shape({
+        username:Yup.string().min(3,"Minimalnie 3 znaki").max(20,"Maksymalnie 20 znaków").required("Pole wymagane"),
+        password: Yup.string().min(8,"Minimum 8 znaków").required("Pole wymagane"),
+        name:Yup.string().min(3,"Minimalnie 3 znaki").required("Pole wymagane"),
+        email: Yup.string().email("Sprawdź poprawność emaila").required("Pole wymagane")
+    })
+
+    const onSubmit = (data) => {
+        axios.post("http://localhost:3001/users/register",data).then((response)=>{
+            console.log(response)
+            if(response.data.message === "User Exist"){
+                setUsername(true)
+            }
+            if(response.data.message === "Email Busy"){
+                setEmail(true)
+            }
+
+            navigate('/')
+        })
+    }
+
     return (
+        <>
+            <Helmet>
+                <title>Habits Tracker - Register</title>
+            </Helmet>
         <MainTemplate>
             <div className='registerContainer'>
                 <p className='title'>Rejestracja</p>
-                <input type='text' className='registerInput' placeholder='Podaj adres email'/><br/>
-                <input type='text' className='registerInput' placeholder='Podaj nazwę użytkownika'/><br/>
-                <input type='text' className='registerInput' placeholder='Podaj hasło'/><br/>
-                <input type='text' className='registerInput mb-3' placeholder='Potwierdź hasło'/><br/>
-                <button className='mainButtonPink'>Załóż konto</button>
+                <Formik initialValues={initaleValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+                    <Form className="register__form">
+                        <ErrorMessage name="username" className="register__error_message username" component="span"/>
+                        {
+                            username && (<span className="register__error_message">Istnieje już taki użytkownik</span> )
+                        }
+                        <Field autoComplete="off" name="username" placeholder="Podaj nazwę użytkownika"/>
+
+                        <ErrorMessage name="password" className="register__error_message password" component="span"/>
+                        <Field autoComplete="off" type="password" name="password" placeholder="Podaj hasło"/>
+
+                        <ErrorMessage name="name" className="register__error_message name" component="span"/>
+                        <Field autoComplete="off" type="string "name="name" placeholder="Podaj Imię"/>
+
+                        <ErrorMessage name="email" className="register__error_message email" component="span"/>
+                        {
+                            email && (<span className="register__error_message">Taki email jest już wykorzystany</span> )
+                        }
+                        <Field autoComplete="off" type="email" name="email" placeholder="Podaj Email"/>
+
+                        <button type="submit" className='mainButtonPink'>Załóż konto</button>
+                    </Form>
+                </Formik>
+
             </div>
         </MainTemplate>
+        </>
     );
 };
 

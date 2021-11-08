@@ -24,6 +24,17 @@
     text-align: center;
     padding-top: 18vh;
 }
+.register__form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: wrap column;
+}
+.register__error_message{
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+}
 
 @media (min-width: 576px) {
     .registerInput {

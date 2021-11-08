@@ -3,9 +3,15 @@ import './home.css'
 import MainTemplate from "../../templates/MainTemplate";
 import arrowDown from '../../assets/images/arrow-down.png';
 import {Link} from "react-router-dom";
+import {Helmet} from 'react-helmet'
+import {Link as LinkScroll} from 'react-scroll'
 
 const Home = () => {
     return (
+        <>
+        <Helmet>
+            <title>Habits Tracker</title>
+        </Helmet>
         <MainTemplate>
             <div className='container100vh'>
                 <div className='homeTitle'>
@@ -16,16 +22,28 @@ const Home = () => {
                 </div>
                 <div className='buttonDiv'>
                     <button className='mainButton'>
-                        <a href="#about">
-                        Dowiedz się więcej
-                        </a>
+                        <LinkScroll
+                            activeClass="active"
+                            to="about"
+                            spy={true}
+                            smooth={true}
+                            offset={0}
+                            duration={500}>
+                            Dowiedz się więcej
+                        </LinkScroll>
                     </button>
                 </div>
                 <div className='buttonDiv'>
                     <button className='noneButton'>
-                        <a href="#about">
+                        <LinkScroll
+                            activeClass="active"
+                            to="about"
+                            spy={true}
+                            smooth={true}
+                            offset={0}
+                            duration={500}>
                         <img src={arrowDown} alt='arrow down'/>
-                        </a>
+                        </LinkScroll>
                     </button>
                 </div>
             </div>
@@ -48,7 +66,7 @@ const Home = () => {
                 </div>
             </div>
         </MainTemplate>
-
+        </>
     );
 };
 
