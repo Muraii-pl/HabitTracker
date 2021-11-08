@@ -7,25 +7,42 @@
 
 @font-face {
   font-family: "AlegreyaSansSC" ;
-  src: local('AlegreyaSansSCNormal'),url('./assets/fonts/AlegreyaSansSC-Regular.ttf') format('truetype');
+  src: local('AlegreyaSansSC'),url('./assets/fonts/AlegreyaSansSC-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "AlegreyaSansSC" ;
-  src: local('AlegreyaSansSCBold'),
+  src: local('AlegreyaSansSC'),
   url('./assets/fonts/AlegreyaSansSC-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 
-
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'AlegreyaSansSC', serif;
+  font-weight: normal;
+
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  outline: none;
+  border: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a{
+  color: #000;
+  text-decoration: none;
 }
 
 
