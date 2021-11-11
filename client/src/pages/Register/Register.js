@@ -10,7 +10,7 @@ import * as Yup from "yup"
 
 const Register = () => {
     const navigate = useNavigate()
-    const initaleValues = {
+    const initialValues = {
         username:"",
         password:"",
         name:"",
@@ -28,8 +28,7 @@ const Register = () => {
     })
 
     const onSubmit = (data) => {
-        axios.post("http://localhost:3001/users/register",data).then((response)=>{
-            console.log(response)
+        axios.post("http://localhost:3001/auth/register",data).then((response)=>{
             if(response.data.message === "User Exist"){
                 setUsername(true)
             }
@@ -37,7 +36,7 @@ const Register = () => {
                 setEmail(true)
             }
 
-            navigate('/')
+            navigate('/login')
         })
     }
 
@@ -49,7 +48,7 @@ const Register = () => {
         <MainTemplate>
             <div className='registerContainer'>
                 <p className='title'>Rejestracja</p>
-                <Formik initialValues={initaleValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+                <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
                     <Form className="register__form">
                         <ErrorMessage name="username" className="register__error_message username" component="span"/>
                         {

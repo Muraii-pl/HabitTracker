@@ -8,6 +8,7 @@ const {validateToken} = require("../middlewares/AuthMiddleware");
 
 const Token = process.env.VALIDTOKEN
 
+
 router.post('/register', async (req, res) => {
     const {username, password, name, email} = req.body
 
@@ -54,7 +55,7 @@ router.post('/login', async (req, res) => {
         }
     })
     if (!user) {
-        return res.status(403).json({
+        return res.json({
             message: "User Doesn't Exist",
             error: "User Doesn't Exist"
         })
@@ -62,18 +63,20 @@ router.post('/login', async (req, res) => {
 
     bcrypt.compare(password, user.password).then((match) => {
         if (!match) {
-            return res.status(403).json({
+            return res.json({
                 message: "Wrong Username and Password",
                 error: "Wrong Username and Password"
             })
         }
 
-        const accesToken = sign({
+        const accessToken = sign({
             username: user.username,
             name: user.name
-        }, Token)
+        }, Token,{
+            expiresIn: "30s"
+        })
         res.status(200).json({
-            token: accesToken,
+            token: accessToken,
             username: user.username,
             name: user.name
         })
@@ -81,22 +84,8 @@ router.post('/login', async (req, res) => {
 
 })
 
-router.post('/uploadAvatar',validateToken, async (req, res) => {
-    if(req.files){
-        const file = req.files.avatar
-        const fileName = `avatar${file.name.slice(file.name.lastIndexOf('.'))}`
-        const directory = `./public/Users/${req.user.username}/${fileName}`
-        file.mv(directory, err=>{
-            if(err) {
-                res.json({error:err})
-            } else {
-                res.status(200).json({
-                    message:"File Uploaded successfully",
-                    error:false
-                })
-            }
-        })
-    }
+router.get('/auth',validateToken,(req,res)=>{
+    res.json(req.user)
 })
 
 module.exports = router

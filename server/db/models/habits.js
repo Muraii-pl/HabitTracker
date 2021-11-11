@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DATE,
             allowNull: false
         }
-    },{timestamps:false});
+    },{timestamps: false});
 
 
     return Habits;

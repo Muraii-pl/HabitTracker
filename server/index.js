@@ -15,8 +15,10 @@ app.use(express.static('public'));
 
 
 const Users = require("./routes/Users")
+const Profiles = require("./routes/Profiles")
 
-app.use("/users", Users)
+app.use("/auth", Users)
+app.use("/users", Profiles)
 
 db.sequelize.sync().then(() => {
     app.listen(port, () => {
