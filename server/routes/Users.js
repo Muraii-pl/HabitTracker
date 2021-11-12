@@ -70,10 +70,11 @@ router.post('/login', async (req, res) => {
         }
 
         const accessToken = sign({
+            id:user.id,
             username: user.username,
             name: user.name
         }, Token,{
-            expiresIn: "30s"
+            expiresIn: process.env.EXPIRES_IN
         })
         res.status(200).json({
             token: accessToken,

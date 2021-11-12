@@ -16,7 +16,12 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-    });
 
+    });
+    Users.associate = (models) => {
+        Users.hasMany(models.Tracker, {
+            onDelete: "cascade"
+        })
+    }
     return Users;
 };
