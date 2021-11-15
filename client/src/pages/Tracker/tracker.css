@@ -1,0 +1,63 @@
+.tracker__header{
+    display: flex;
+    justify-content: space-between;
+    padding: 135px 20px 0px;
+}
+.tableLeft__listHabits{
+    display: flex;
+    flex-flow: column wrap;
+    padding: 5px 8px;
+    width: max-content;
+}
+.tracker__table{
+    display: flex;
+}
+.tableLeft__header{
+    border-bottom: 1px solid rgba(0,0,0,.2);
+    padding: 5px 8px;
+}
+.tableRight{
+    overflow-x: auto;
+    margin-right: 15px;
+    border-left: 1px solid rgba(0,0,0,.2);
+}
+.tableRight__header{
+    display: flex;
+    border-bottom: 1px solid rgba(0,0,0,.2);
+    padding: 5px 0px 5px 15px;
+}
+.tableRight__numberOfDay{
+    min-width: 18px;
+    display: block;
+    text-align: center;
+    margin: 0px 6px;
+}
+.tableRight,.tableLeft{
+    border-top: 1px solid rgba(0,0,0,.2);
+}
+.tableRight__listDone{
+    display: flex;
+    flex-direction: column;
+
+}
+.tableRight__row{
+    display: flex;
+    padding:  5px 0px 0px 15px;
+}
+.listHabits__name{
+    height: 23px;
+}
+
+@media screen and (min-width: 768px){
+    .tableRight{
+        width: 100%;
+    }
+    .tableRight__header{
+        justify-content: space-between;
+    }
+    .tableRight__row{
+        justify-content: space-between;
+
+    }
+
+}

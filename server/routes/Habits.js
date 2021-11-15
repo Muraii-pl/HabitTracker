@@ -30,7 +30,7 @@ router.post('/addDays/:dayId',validateToken,async (req,res)=>{
 router.get("/:id", validateToken, async (req, res) => {
     const UserId = req.user.id
     const trackerId = req.params.id
-    const listOfTrackers = await Tracker.findAll({
+    const listOfTrackers = await Tracker.findOne({
         where: {
             UserId: UserId,
             id:trackerId
@@ -43,7 +43,6 @@ router.get("/:id", validateToken, async (req, res) => {
                 attributes:[]
             },
             attributes:{
-                exclude:["id"]
             },
             include:{
                 model:Days,
@@ -52,7 +51,7 @@ router.get("/:id", validateToken, async (req, res) => {
                 },
                 attributes:{
                     exclude:["id"]
-                }
+                },
             }
         }
     })

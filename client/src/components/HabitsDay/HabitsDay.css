@@ -1,0 +1,15 @@
+.circle{
+    min-width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    margin: 0px 6px;
+    cursor: pointer;
+
+}
+
+.circle__notDone{
+    background-color: #fff;
+}
+.circle__Done{
+    background-color: red;
+}
