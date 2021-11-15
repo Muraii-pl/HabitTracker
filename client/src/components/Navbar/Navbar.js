@@ -53,7 +53,7 @@ const Navbar = () => {
                 </>
             ):(
                 <>
-                    <Link to={`/user/:${authState.id}`}>Moje Habits Trackers</Link>
+                    <Link to={'/trackers'}>Moje Habits Trackers</Link>
                     <span>{authState.username}</span>
                     <button onClick={logout}>Wyloguj się</button>
                 </>

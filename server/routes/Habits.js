@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const {Tracker, Habits,Tracker_Habits,Habits_Days} = require('../db/models')
+const {Tracker, Habits,Tracker_Habits,Habits_Days, Days} = require('../db/models')
 
 const {validateToken} = require("../middlewares/AuthMiddleware");
 
@@ -25,6 +25,38 @@ router.post('/addDays/:dayId',validateToken,async (req,res)=>{
         HabitId:habitId
     })
     res.json("Success")
+})
+
+router.get("/:id", validateToken, async (req, res) => {
+    const UserId = req.user.id
+    const trackerId = req.params.id
+    const listOfTrackers = await Tracker.findAll({
+        where: {
+            UserId: UserId,
+            id:trackerId
+        }, attributes: {
+            exclude: ['UserId']
+        },
+        include: {
+            model:Habits,
+            through:{
+                attributes:[]
+            },
+            attributes:{
+                exclude:["id"]
+            },
+            include:{
+                model:Days,
+                through:{
+                    attributes:[]
+                },
+                attributes:{
+                    exclude:["id"]
+                }
+            }
+        }
+    })
+    res.json(listOfTrackers)
 })
 
 

@@ -1,0 +1,18 @@
+.trackerList__header{
+    padding-top: 130px;
+    padding-left: 65px;
+}
+.trackerList__wrapper{
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    align-content: center;
+    justify-content: center;
+}
+
+@media screen and (min-width: 768px) {
+    .trackerList__wrapper{
+        justify-content: start;
+    }
+
+}

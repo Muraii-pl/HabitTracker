@@ -1,4 +1,4 @@
-const {INTEGER} = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
     const Days = sequelize.define("Days", {
         day: {

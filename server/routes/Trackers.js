@@ -18,7 +18,7 @@ router.get("/", validateToken, async (req, res) => {
     const UserId = req.user.id
     const listOfTrackers = await Tracker.findAll({
         where: {
-            UserId: UserId
+            UserId: UserId,
         }, attributes: {
             exclude: ['UserId']
         },
