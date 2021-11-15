@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const {Tracker, Habits} = require('../db/models')
+const {Tracker, Habits,Days} = require('../db/models')
 
 const {validateToken} = require("../middlewares/AuthMiddleware");
 
@@ -29,6 +29,15 @@ router.get("/", validateToken, async (req, res) => {
             },
             attributes:{
                 exclude:["id"]
+            },
+            include:{
+                model:Days,
+                through:{
+                    attributes:[]
+                },
+                attributes:{
+                    exclude:["id"]
+                }
             }
         }
     })
