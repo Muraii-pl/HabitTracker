@@ -24,7 +24,9 @@
     text-align: center;
     padding-top: 30vh;
 }
-
+.login__options{
+    width: 100%;
+}
 @media (min-width: 576px) {
     .loginInput {
         -moz-appearance: none;

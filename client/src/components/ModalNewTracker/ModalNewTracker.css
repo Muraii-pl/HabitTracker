@@ -1,0 +1,21 @@
+.modal_wrapper{
+    width: 100vw;
+    height: 400px;
+    max-width: 320px;
+    background-color: red;
+    position: fixed;
+    left: 50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+    padding: 15px;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+@media screen and (min-width: 576px){
+    .modal_wrapper{
+        width: 320px;
+        border-radius: 15px;
+    }
+
+}

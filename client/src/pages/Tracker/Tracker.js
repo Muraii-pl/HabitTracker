@@ -12,6 +12,8 @@ import './tracker.css'
 const Tracker = () => {
     const {id} = useParams()
     const [trackerData, setTrackerData] = useState([])
+
+
     const [daysList, setDayList] = useState([])
     const listOfMonth = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzien"]
     useEffect(() => {
@@ -32,6 +34,8 @@ const Tracker = () => {
         }
         setDayList(dayList)
     }
+
+
 
     return (
         <>
@@ -64,7 +68,8 @@ const Tracker = () => {
                                         {daysList.map((dayElement, index) => {
 
                                             return (
-                                                 <HabitsDay index={index+1} days={habitsElement.Days} habitsId={habitsElement.id}/>
+                                                <HabitsDay index={index + 1} days={habitsElement.Days}
+                                                           habitsId={habitsElement.id}/>
                                             )
 
                                         })}

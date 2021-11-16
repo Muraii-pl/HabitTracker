@@ -1,22 +1,29 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import './Tracker.css'
+import plus from '../../assets/images/plus.svg'
 
 
-const Tracker = ({name,month,year,habits,id}) => {
-    console.log(habits)
+const Tracker = ({name, month, year, habits, id, newTracker,openModal}) => {
+    let content = newTracker ? (<div className="tracker_wrapper tracker_wrapper--new" onClick={openModal}>
+        <img src={plus} alt="Add new Tracker" width="50%" height="50%"/>
+    </div>): (<div className="tracker_wrapper">
+        <div>{name}</div>
+        <div>Miesiąc:{month} {year}</div>
+        <div>Nawyki:{
+            habits.map((elements, index) => {
+                return `${elements.name}, `
+            })
+        }</div>
+
+        <Link to={`/trackers/${id}`}>
+            <button>Wyswietl</button>
+        </Link>
+    </div>)
     return (
-        <div className="tracker_wrapper">
-            <div>{name}</div>
-            <div>Miesiąc:{month} {year}</div>
-            <div>Nawyki:{
-                habits.map((elements,index)=>{
-                    return `${elements.name}, `
-                })
-            }</div>
-
-            <Link to={`/trackers/${id}`}><button>Wyswietl</button></Link>
-        </div>
+        <>
+        {content}
+        </>
     );
 
 };

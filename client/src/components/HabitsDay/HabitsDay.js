@@ -1,6 +1,7 @@
 import React from 'react';
 import './HabitsDay.css'
 import axios from "axios";
+import done from '../../assets/images/done.svg'
 
 const HabitsDay = ({index,days,habitsId}) => {
 
@@ -19,7 +20,7 @@ const HabitsDay = ({index,days,habitsId}) => {
     days.forEach(element => doneDay.push(element.day))
     return(
         <>
-            {doneDay.includes(`${index}`) ?  <div className="circle circle__Done" data-id={index}/> :   <div className="circle circle__notDone" data-id={index} onClick={onClick}/>}
+            {doneDay.includes(`${index}`) ?  <div className="circle circle__Done" data-id={index} style={{ background:`url(${done}) black no-repeat center center`}}/> :   <div className="circle circle__notDone" data-id={index} onClick={onClick}/>}
         </>
 
     );

@@ -48,7 +48,7 @@ router.post('/register', async (req, res) => {
 })
 
 router.post('/login', async (req, res) => {
-    const {username, password} = req.body
+    const {username, password,remember} = req.body
     const user = await Users.findOne({
         where: {
             username: username
@@ -68,14 +68,22 @@ router.post('/login', async (req, res) => {
                 error: "Wrong Username and Password"
             })
         }
-
-        const accessToken = sign({
-            id:user.id,
-            username: user.username,
-            name: user.name
-        }, Token,{
-            expiresIn: process.env.EXPIRES_IN
-        })
+        let accessToken
+        if(remember){
+             accessToken = sign({
+                id:user.id,
+                username: user.username,
+                name: user.name
+            }, Token)
+        } else {
+            accessToken = sign({
+                id:user.id,
+                username: user.username,
+                name: user.name
+            }, Token,{
+                expiresIn: process.env.EXPIRES_IN
+            })
+        }
         res.status(200).json({
             token: accessToken,
             username: user.username,
