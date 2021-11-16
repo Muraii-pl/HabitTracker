@@ -2,7 +2,7 @@
     width: 100vw;
     height: 400px;
     max-width: 320px;
-    background-color: red;
+    background-color: white;
     position: fixed;
     left: 50%;
     top:50%;
@@ -10,6 +10,26 @@
     padding: 15px;
     display: flex;
     flex-flow: column nowrap;
+    border: 1px solid #FF9D9D;
+    -webkit-box-shadow: 0px 9px 15px 0px rgba(66, 68, 90, 0.34);
+    -moz-box-shadow: 0px 9px 15px 0px rgba(66, 68, 90, 0.34);
+    box-shadow: 0px 9px 15px 0px rgba(66, 68, 90, 0.34);
+
+}
+
+.modal_newTracker_mainButtonPink{
+    height: 60px;
+    width: 100%;
+    -webkit-appearance: none;
+    color: #000;
+    font-weight: bold;
+    background-color: #FF9D9D;
+    -moz-appearance: none;
+    border-radius: 15px;
+    font-size: 18px;
+    font-family: 'AlegreyaSansSC', serif;
+    border: none;
+    cursor: pointer;
 }
 
 @media screen and (min-width: 576px){

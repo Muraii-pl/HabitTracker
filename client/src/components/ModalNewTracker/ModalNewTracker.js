@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react';
 import './ModalNewTracker.css'
 import axios from "axios";
-const ModalNewTracker = ({open,openModal,modalRef}) => {
+const ModalNewTracker = ({open,openModal}) => {
     const [trackerName,setTrackerName] = useState("")
     const [month,setMonth] = useState("")
     const [year,setYear] = useState("")
@@ -42,9 +42,9 @@ const ModalNewTracker = ({open,openModal,modalRef}) => {
             {open ? (<div className="modal_wrapper">
                 <h3>Dodaj nowy Tracker</h3>
                 {formError.nameError && <span>{formError.nameError}</span>}
-                <input type="text" name="name" placeholder="Nazwa nowego trackera"  onChange={(event => {setTrackerName(event.target.value)})} autoComplete="off"/>
+                <input type="text" name="name" placeholder="Nazwa nowego trackera"  onChange={(event => {setTrackerName(event.target.value)})} autoComplete="off" className="new_habit__input"/>
                 {formError.monthError && <span>{formError.monthError}</span>}
-                <select type="select" name="month" onChange={(event => {setMonth(event.target.value)})}>
+                <select type="select" name="month" onChange={(event => {setMonth(event.target.value)})} className="new_habit__input">
                     <option value="">Wybierz miesiąc</option>
                     <option value="Styczeń">Styczeń</option>
                     <option value="Luty">Luty</option>
@@ -60,9 +60,9 @@ const ModalNewTracker = ({open,openModal,modalRef}) => {
                     <option value="Grudzień">Grudzień</option>
                 </select>
                 {formError.yearError && <span>{formError.yearError}</span>}
-                <input type="number" name="year" placeholder="2021" min="2021" onChange={(event => {setYear(event.target.value)})}/>
+                <input type="number" name="year" placeholder="2021" min="2021" onChange={(event => {setYear(event.target.value)})} className="new_habit__input"/>
 
-                <button onClick={createTracker}>Wyślij</button>
+                <button onClick={createTracker} className="modal_newTracker_mainButtonPink">Wyślij</button>
             </div>) : (<></>)}
         </>
     );

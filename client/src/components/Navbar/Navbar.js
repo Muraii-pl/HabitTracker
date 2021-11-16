@@ -45,18 +45,21 @@ const Navbar = () => {
 
     return (
         <div className="navigation">
-            <Link to='/'>Home</Link>
             {!authState.status ? (
-                <>
-                    <Link to="/register">Register</Link>
-                    <Link to="/login">Login</Link>
-                </>
+                <div className="logout">
+                    <Link to="/login"><span className="login">Logowanie</span></Link>
+                    <Link to="/register"><span className="register">Rejestracja</span></Link>
+
+                </div>
             ):(
-                <>
+                <div className="login">
                     <Link to={'/trackers'}>Moje Habits Trackers</Link>
-                    <span>{authState.username}</span>
-                    <button onClick={logout}>Wyloguj się</button>
-                </>
+                    <div className="login__right">
+                        <span>{authState.username}</span>
+                        <button onClick={logout} className="login__button">Wyloguj się</button>
+                    </div>
+
+                </div>
             )
             }
         </div>

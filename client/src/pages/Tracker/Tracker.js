@@ -8,11 +8,12 @@ import moment from "moment";
 import HabitsDay from "../../components/HabitsDay/HabitsDay";
 
 import './tracker.css'
+import ModalNewHabit from "../../components/ModalNewHabit/ModalNewHabit";
 
 const Tracker = () => {
     const {id} = useParams()
     const [trackerData, setTrackerData] = useState([])
-
+    const [showModal, setShowModal] = useState(false)
 
     const [daysList, setDayList] = useState([])
     const listOfMonth = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzien"]
@@ -35,6 +36,10 @@ const Tracker = () => {
         setDayList(dayList)
     }
 
+    const openModal = () => {
+        setShowModal(prev => !prev)
+        showModal ? document.body.style.overflow = 'unset' : document.body.style.overflow = 'hidden'
+    }
 
 
     return (
@@ -44,8 +49,10 @@ const Tracker = () => {
             </Helmet>
             <MainTemplate>
                 <div className="tracker__header">
-                    <div>{month} {year}</div>
-                    <div>{name}</div>
+                    <div className="tracker__header_date">
+                      Miesiąc: <div className="tracker__date">{month} {year}</div>
+                    </div>
+                    <div className="tracker__name">{name}</div>
                 </div>
                 <div className="tracker__table">
                     <div className="tracker__tableLeft tableLeft">
@@ -54,6 +61,9 @@ const Tracker = () => {
                             {Habits && Habits.map((element, index) => {
                                 return (<span key={index} className="listHabits__name">{element.name}</span>)
                             })}
+                            <div className="addNewHabits" onClick={openModal}>
+                                +
+                            </div>
                         </div>
                     </div>
                     <div className="tracker__tableRight tableRight">
@@ -80,6 +90,8 @@ const Tracker = () => {
                         </div>
                     </div>
                 </div>
+
+                <ModalNewHabit openModal={openModal} showModal={showModal} trackerId={id}/>
             </MainTemplate>
         </>
     );
