@@ -1,11 +1,12 @@
 import React, {useEffect,useContext} from 'react';
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import './Navbar.css'
 import {AuthContext} from "../../helpers/AuthContext";
 import axios from "axios";
 
 const Navbar = () => {
     const {authState, setAuthState} = useContext(AuthContext)
+    const navigate = useNavigate()
     useEffect(() => {
         axios.get('http://localhost:3001/auth/auth', {
             headers: {
@@ -41,6 +42,7 @@ const Navbar = () => {
             id:0,
             status:false
         })
+        navigate('/')
     }
 
     return (

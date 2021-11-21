@@ -18,9 +18,10 @@ const HabitsDay = ({index,days,habitsId}) => {
     }
     let doneDay = []
     days.forEach(element => doneDay.push(element.day))
+    console.log(doneDay)
     return(
         <>
-            {doneDay.includes(`${index}`) ?  <div className="circle circle__Done" data-id={index} style={{ background:`url(${done}) black no-repeat center center`}}/> :   <div className="circle circle__notDone" data-id={index} onClick={onClick}/>}
+            {doneDay.includes(index) ?  <div className="circle circle__Done" data-id={index} style={{ background:`url(${done}) black no-repeat center center`}}/> :   <div className="circle circle__notDone" data-id={index} onClick={onClick}/>}
         </>
 
     );
